@@ -69,6 +69,26 @@ def show_entry():
             emotion_url_2 = value[1]
         if key==emotion3:
             emotion_url_3 = value[1]
+    return [
+        {
+            "date": date1,
+            "entry": entry1,
+            "emotion": emotion1,
+            "emotion_url": emotion_url_1
+        },
+        {
+            "date": date2,
+            "entry": entry2,
+            "emotion": emotion2,
+            "emotion_url": emotion_url_2
+        },
+        {
+            "date": date3,
+            "entry": entry3,
+            "emotion": emotion3,
+            "emotion_url": emotion_url_3
+        }
+    ]
 app.run()
 
 
