@@ -10,8 +10,9 @@ app = Flask(__name__)
 run_with_ngrok(app)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    entries = show_entry()
+    return render_template("index.html", entries=entries)
  
 @app.route('/predict-emotion', methods=["POST"])
 def predict_emotion():
@@ -40,7 +41,34 @@ def predict_emotion():
 
         # Enviar respuesta.         
         return jsonify(response)
-       
+
+def show_entry():
+    day_entry_list = pd.read_csv("/content/Class135B/static/assets/data_files/data_entry.csv")
+    day_entry_list = day_entry_list.iloc[::-1]
+
+    date1 = (day_entry_list['date'].values[0])
+    date2 = (day_entry_list['date'].values[1])
+    date3 = (day_entry_list['date'].values[2])
+
+    entry1 = (day_entry_list['text'].values[0])
+    entry2 = (day_entry_list['text'].values[1])
+    entry3 = (day_entry_list['text'].values[2])
+
+    emotion1 = (day_entry_list['emotion'].values[0])
+    emotion2 = (day_entry_list['emotion'].values[1])
+    emotion3 = (day_entry_list['emotion'].values[2])
+
+    emotion_url_1 = ""
+    emotion_url_2 = ""
+    emotion_url_3 = ""
+
+    for key, value in emo_code_url.items():
+        if key==emtion1:
+            emotion_url_1 = value[1]
+        if key==emtion2:
+            emotion_url_2 = value[1]
+        if key==emtion3:
+            emotion_url_3 = value[1]
 app.run()
 
 
