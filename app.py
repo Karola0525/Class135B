@@ -10,8 +10,11 @@ app = Flask(__name__)
 run_with_ngrok(app)
 
 @app.route('/')
+//cambiar nombre de index a home
 def home():
+    //agregar una variable para que reciba los datos de una funcion
     entries = show_entry()
+    //le pasamos la variable a la plantilla index.html
     return render_template("index.html", entries=entries)
  
 @app.route('/predict-emotion', methods=["POST"])
@@ -41,7 +44,7 @@ def predict_emotion():
 
         # Enviar respuesta.         
         return jsonify(response)
-
+//funcion que lee el archivo csv con el hsitorial de predicciones y lo devuelve en un arreglo
 def show_entry():
     day_entry_list = pd.read_csv("/content/Class135B/static/assets/data_files/data_entry.csv")
     day_entry_list = day_entry_list.iloc[::-1]
