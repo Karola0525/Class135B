@@ -63,11 +63,11 @@ def show_entry():
     emotion_url_3 = ""
 
     for key, value in emo_code_url.items():
-        if key==emtion1:
+        if key==emotion1:
             emotion_url_1 = value[1]
-        if key==emtion2:
+        if key==emotion2:
             emotion_url_2 = value[1]
-        if key==emtion3:
+        if key==emotion3:
             emotion_url_3 = value[1]
 app.run()
 
